@@ -169,7 +169,7 @@ export const hmnsPerfumes: PerfumeEntry[] = [
     img: 'https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.75909.avif',
     spl: 8,
     period: 'Evening',
-    weather: 'Dingin',
+    weather: 'Panas',
     topNotes: 'Lavender',
     middleNotes: 'Amber',
     baseNotes: 'Labdanum',

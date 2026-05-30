@@ -345,6 +345,7 @@ export default function BrutalistSOTDpamungkas() {
   const [lang, setLang] = useState<'en' | 'id'>('en');
   const d = UI_DICT[lang];
   const [user, setUser] = useState<string | null>(null);
+  const [userAvatar, setUserAvatar] = useState<string | null>(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
   const [authUsername, setAuthUsername] = useState("");
@@ -615,10 +616,13 @@ export default function BrutalistSOTDpamungkas() {
     performLoginSync(displayUser, safeEmailKey);
   };
 
-  const handleGoogleAuth = () => {
-    // Simulated Google OAuth flow — in production this would redirect to Google's OAuth consent screen
-    const simulatedGoogleUser = `google_${Date.now().toString(36)}`;
-    performLoginSync(simulatedGoogleUser, `${simulatedGoogleUser}@google.com`);
+  const handleGoogleAuth = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    });
+    if (error) {
+      console.error("Supabase Google Auth Error:", error);
+    }
   };
 
   const performLoginSync = (displayUser: string, emailKey: string) => {
@@ -675,7 +679,7 @@ export default function BrutalistSOTDpamungkas() {
     setAuthErrors({ username: null, email: null, password: null, confirm: null });
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     const currentUserEmail = localStorage.getItem("sotd_user_email");
     
     if (currentUserEmail) {
@@ -685,6 +689,7 @@ export default function BrutalistSOTDpamungkas() {
     }
 
     setUser(null);
+    setUserAvatar(null);
     localStorage.removeItem("sotd_user");
     localStorage.removeItem("sotd_user_email");
     
@@ -693,7 +698,31 @@ export default function BrutalistSOTDpamungkas() {
     
     localStorage.removeItem("sotd_closet");
     localStorage.removeItem("sotd_journal");
+
+    await supabase.auth.signOut();
   };
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        const name = session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || "User";
+        const emailKey = session.user.email?.trim().toLowerCase() || 'unknown';
+        setUser(name);
+        setUserAvatar(session.user.user_metadata?.avatar_url || null);
+        
+        if (event === 'SIGNED_IN') {
+           performLoginSync(name, emailKey);
+        }
+      } else {
+        setUser(null);
+        setUserAvatar(null);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   const handleGetLocation = () => {
     setIsLocating(true);
@@ -1175,6 +1204,7 @@ export default function BrutalistSOTDpamungkas() {
 
             {user ? (
               <div className={`flex items-center gap-4 border-l pl-4 ${isDark ? 'border-[#333333]' : 'border-gray-400'}`}>
+                {userAvatar && <img src={userAvatar} alt="Avatar" className="w-6 h-6 rounded-full border border-gray-500" />}
                 <span className={`text-[10px] tracking-widest uppercase font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>{d.hiUser} {user}</span>
                 <button onClick={handleLogout} className="text-[10px] uppercase font-bold text-red-500 hover:line-through">{d.logoutBtn}</button>
               </div>
