@@ -1,0 +1,102 @@
+export type PerfumeCategory = 'CLEAN' | 'CITRUS' | 'GOURMAND' | 'BOLD' | 'FRUITY';
+
+export interface PerfumeEntry { id: number; brand: string; name: string; img: string; spl: number; period: string; weather: string; topNotes: string; middleNotes: string; baseNotes: string; category: PerfumeCategory; notes: string[]; physicalAttributes: { shape: string; liquidColor: string; capColor: string; }; price: number; }
+
+export const yvesSaintLaurentPerfumes: PerfumeEntry[] = [
+  {
+    id: 201,
+    brand: "Yves Saint Laurent",
+    name: "Black Opium",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.25324.avif",
+    spl: 8,
+    period: "Evening",
+    weather: "Dingin",
+    topNotes: "Pink Pepper, Orange Blossom, Pear",
+    middleNotes: "Coffee, Bitter Almond, Licorice, Jasmine",
+    baseNotes: "Vanilla, Patchouli, Cedar, Cashmere Wood",
+    category: "GOURMAND",
+    notes: ["Pink Pepper", "Orange Blossom", "Pear", "Coffee", "Almond", "Licorice", "Jasmine", "Vanilla", "Patchouli"],
+    physicalAttributes: { shape: "Rounded glitter bottle", liquidColor: "Dark amber", capColor: "Black" },
+    price: 135
+  },
+  {
+    id: 202,
+    brand: "Yves Saint Laurent",
+    name: "Libre",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.56077.avif",
+    spl: 8,
+    period: "Anytime",
+    weather: "Versatile",
+    topNotes: "Lavender, Mandarin Orange, Black Currant, Petitgrain",
+    middleNotes: "Lavender, Orange Blossom, Jasmine",
+    baseNotes: "Madagascar Vanilla, Musk, Cedar, Ambergris",
+    category: "BOLD",
+    notes: ["Lavender", "Mandarin Orange", "Black Currant", "Petitgrain", "Orange Blossom", "Jasmine", "Vanilla", "Musk", "Cedar"],
+    physicalAttributes: { shape: "Rectangular couture bottle", liquidColor: "Golden", capColor: "Black" },
+    price: 145
+  },
+  {
+    id: 203,
+    brand: "Yves Saint Laurent",
+    name: "La Nuit de l'Homme",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.5521.avif",
+    spl: 7,
+    period: "Evening",
+    weather: "Dingin",
+    topNotes: "Cardamom",
+    middleNotes: "Lavender, Virginia Cedar, Bergamot",
+    baseNotes: "Vetiver, Caraway",
+    category: "BOLD",
+    notes: ["Cardamom", "Lavender", "Cedar", "Bergamot", "Vetiver", "Caraway"],
+    physicalAttributes: { shape: "Cylindrical bottle", liquidColor: "Pale amber", capColor: "Black" },
+    price: 110
+  },
+  {
+    id: 204,
+    brand: "Yves Saint Laurent",
+    name: "Y Eau de Parfum",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.50757.avif",
+    spl: 8,
+    period: "Day",
+    weather: "Versatile",
+    topNotes: "Apple, Ginger, Bergamot",
+    middleNotes: "Sage, Juniper Berries, Geranium",
+    baseNotes: "Amberwood, Tonka Bean, Cedar, Vetiver, Olibanum",
+    category: "CLEAN",
+    notes: ["Apple", "Ginger", "Bergamot", "Sage", "Juniper Berries", "Geranium", "Amberwood", "Tonka Bean", "Cedar"],
+    physicalAttributes: { shape: "Sharp rectangular bottle", liquidColor: "Blue gray", capColor: "Black" },
+    price: 125
+  },
+  {
+    id: 205,
+    brand: "Yves Saint Laurent",
+    name: "MYSLF",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.84094.avif",
+    spl: 7,
+    period: "Day",
+    weather: "Versatile",
+    topNotes: "Calabrian Bergamot, Bergamot",
+    middleNotes: "Tunisian Orange Blossom",
+    baseNotes: "Ambrofix, Patchouli",
+    category: "CITRUS",
+    notes: ["Calabrian Bergamot", "Bergamot", "Orange Blossom", "Ambrofix", "Patchouli"],
+    physicalAttributes: { shape: "Slim rectangular bottle", liquidColor: "Light amber", capColor: "Black" },
+    price: 130
+  },
+  {
+    id: 206,
+    brand: "Yves Saint Laurent",
+    name: "Mon Paris",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.38914.avif",
+    spl: 7,
+    period: "Day",
+    weather: "Versatile",
+    topNotes: "Strawberry, Raspberry, Pear, Calabrian Bergamot, Tangerine, Orange",
+    middleNotes: "Datura, Peony, Orange Blossom, Jasmine Sambac",
+    baseNotes: "Patchouli, White Musk, Ambroxan, Cedar, Moss, Vanilla",
+    category: "FRUITY",
+    notes: ["Strawberry", "Raspberry", "Pear", "Bergamot", "Tangerine", "Datura", "Peony", "Patchouli", "White Musk"],
+    physicalAttributes: { shape: "Rounded glass bottle with bow", liquidColor: "Pink", capColor: "Black" },
+    price: 135
+  }
+];

@@ -1,0 +1,102 @@
+export type PerfumeCategory = 'CLEAN' | 'CITRUS' | 'GOURMAND' | 'BOLD' | 'FRUITY';
+
+export interface PerfumeEntry { id: number; brand: string; name: string; img: string; spl: number; period: string; weather: string; topNotes: string; middleNotes: string; baseNotes: string; category: PerfumeCategory; notes: string[]; physicalAttributes: { shape: string; liquidColor: string; capColor: string; }; price: number; }
+
+export const afnanPerfumes: PerfumeEntry[] = [
+  {
+    id: 101,
+    brand: "Afnan",
+    name: "9 PM",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.65414.avif",
+    spl: 8,
+    period: "Evening",
+    weather: "Dingin",
+    topNotes: "Apple, Cinnamon, Wild Lavender, Bergamot",
+    middleNotes: "Orange Blossom, Lily-of-the-Valley",
+    baseNotes: "Vanilla, Tonka Bean, Amber, Patchouli",
+    category: "GOURMAND",
+    notes: ["Apple", "Cinnamon", "Lavender", "Bergamot", "Orange Blossom", "Vanilla", "Tonka Bean", "Amber"],
+    physicalAttributes: { shape: "Tall rectangular bottle", liquidColor: "Clear", capColor: "Metallic purple" },
+    price: 35
+  },
+  {
+    id: 102,
+    brand: "Afnan",
+    name: "Supremacy Not Only Intense",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.68271.avif",
+    spl: 9,
+    period: "Evening",
+    weather: "Dingin",
+    topNotes: "Black Currant, Bergamot, Apple",
+    middleNotes: "Oakmoss, Patchouli, Lavender",
+    baseNotes: "Ambergris, Musk, Saffron",
+    category: "BOLD",
+    notes: ["Black Currant", "Bergamot", "Apple", "Oakmoss", "Patchouli", "Lavender", "Ambergris", "Saffron"],
+    physicalAttributes: { shape: "Heavy rectangular bottle", liquidColor: "Dark amber", capColor: "Black" },
+    price: 55
+  },
+  {
+    id: 103,
+    brand: "Afnan",
+    name: "Turathi Blue",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.70839.avif",
+    spl: 8,
+    period: "Day",
+    weather: "Panas",
+    topNotes: "Citruses",
+    middleNotes: "Amber, Woody Notes",
+    baseNotes: "Musk, Patchouli, Spices",
+    category: "CITRUS",
+    notes: ["Citruses", "Amber", "Woody Notes", "Musk", "Patchouli", "Spices"],
+    physicalAttributes: { shape: "Angular rectangular bottle", liquidColor: "Light blue", capColor: "Silver" },
+    price: 45
+  },
+  {
+    id: 104,
+    brand: "Afnan",
+    name: "9 AM Dive",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.78611.avif",
+    spl: 7,
+    period: "Day",
+    weather: "Panas",
+    topNotes: "Lemon, Mint, Pink Pepper, Black Currant",
+    middleNotes: "Apple, Incense, Cedar",
+    baseNotes: "Ginger, Sandalwood, Patchouli, Jasmine",
+    category: "CLEAN",
+    notes: ["Lemon", "Mint", "Pink Pepper", "Black Currant", "Apple", "Incense", "Cedar", "Ginger", "Sandalwood"],
+    physicalAttributes: { shape: "Tall rectangular bottle", liquidColor: "Pale blue", capColor: "Silver" },
+    price: 38
+  },
+  {
+    id: 105,
+    brand: "Afnan",
+    name: "Supremacy Silver",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.27352.avif",
+    spl: 8,
+    period: "Day",
+    weather: "Versatile",
+    topNotes: "Pineapple, Black Currant, Bergamot, Apple",
+    middleNotes: "Birch, Patchouli, Moroccan Jasmine, Rose",
+    baseNotes: "Musk, Oakmoss, Ambergris, Vanilla",
+    category: "FRUITY",
+    notes: ["Pineapple", "Black Currant", "Bergamot", "Apple", "Birch", "Patchouli", "Jasmine", "Rose", "Musk"],
+    physicalAttributes: { shape: "Square metallic bottle", liquidColor: "Clear", capColor: "Silver" },
+    price: 42
+  },
+  {
+    id: 106,
+    brand: "Afnan",
+    name: "9 PM Rebel",
+    img: "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.99238.avif",
+    spl: 8,
+    period: "Evening",
+    weather: "Versatile",
+    topNotes: "Pineapple, Mandarin Orange, Granny Smith Apple",
+    middleNotes: "Vanilla, Cedar, Oakmoss",
+    baseNotes: "Ambergris, Dry Wood, Caramel, Musk",
+    category: "FRUITY",
+    notes: ["Pineapple", "Mandarin Orange", "Apple", "Vanilla", "Cedar", "Oakmoss", "Ambergris", "Caramel", "Musk"],
+    physicalAttributes: { shape: "Tall rectangular bottle", liquidColor: "Clear", capColor: "Red" },
+    price: 40
+  }
+];
