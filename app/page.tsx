@@ -616,17 +616,17 @@ export default function BrutalistSOTDpamungkas() {
   };
 
   const handleGoogleAuth = async () => {
-  const { error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
-      scopes: 'openid email profile',
-      queryParams: {
-        prompt: 'select_account',
-        access_type: 'offline',
-      },
-    }
-  });
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+        scopes: 'openid email profile',
+        queryParams: {
+          prompt: 'select_account',
+          access_type: 'offline',
+        },
+      }
+    });
 
     if (error) {
       console.error("Supabase Google Auth Error:", error);
@@ -717,7 +717,7 @@ export default function BrutalistSOTDpamungkas() {
       if (session?.user) {
         // Clear stale google_xxx provider IDs from localStorage
         const storedUser = localStorage.getItem('sotd_user');
-      if (storedUser && storedUser.toLowerCase().startsWith('google_')) {
+        if (storedUser && storedUser.toLowerCase().startsWith('google_')) {
           localStorage.removeItem('sotd_user');
           localStorage.removeItem('sotd_user_email');
         }
