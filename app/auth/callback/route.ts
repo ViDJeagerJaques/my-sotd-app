@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
 
   if (code) {
     const cookieStore = await cookies();
+
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -30,6 +31,6 @@ export async function GET(request: NextRequest) {
   }
 
   // TITIK DARAH PENGHABISAN: 
-  // Nggak pakai deteksi origin, langsung tendang ke link asli!
+  // Langsung tendang ke web live lu! Nggak ada celah buat 8080.
   return NextResponse.redirect('https://my-sotd-app-460699291343.asia-southeast2.run.app/');
 }
