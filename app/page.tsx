@@ -24,17 +24,17 @@ const UI_DICT: Record<string, Record<string, string>> = {
     logoutBtn: "LOGOUT",
     hiUser: "HI,",
     // Hero
-    heroIntro: "00 â€” INTRODUCTION",
+    heroIntro: "00 — INTRODUCTION",
     heroBody: "Curate your collection. Contextualize your day. Arrive at the perfect olfactory conclusion based on your local environment.",
     heroCtaBtn: "OPEN THE VAULT",
     // Vault section
-    vaultLabel: "01 â€” PRIVATE VAULT",
+    vaultLabel: "01 — PRIVATE VAULT",
     vaultTitle: "The Closet.",
     vaultSubtitle: "Select your archive to begin analysis.",
     vaultClearBtn: "[ CLEAR ALL VAULT ]",
     vaultFilterLabel: "FILTER BY CATEGORY",
     // Stylist Engine section
-    stylistLabel: "02 â€” STYLIST ENGINE",
+    stylistLabel: "02 — STYLIST ENGINE",
     stylistTitle: "GENERATE YOUR SOTD",
     envSetup: "ENVIRONMENT SETUP",
     weatherPending: "PENDING...",
@@ -60,7 +60,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     houseOf: "HOUSE OF",
     topNotes: "TOP NOTES:",
     // Tracker / Journal section
-    trackerLabel: "03 â€” DAILY TRACKER",
+    trackerLabel: "03 — DAILY TRACKER",
     trackerTitle: "SOTD Journal.",
     trackerSubtitle: "Your personal olfactory footprint.",
     monthlyCalendar: "MONTHLY SCENT CALENDAR",
@@ -72,7 +72,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     vaultValuation: "VAULT VALUATION",
     noJournal: "No scent recorded yet.",
     noJournalSub: "GENERATE AND LOG YOUR SOTD ABOVE.",
-    ratePerformance: "ðŸ“Š RATE PERFORMANCE",
+    ratePerformance: "📊 RATE PERFORMANCE",
     warningAvoidOud: "[ WARNING: AVOID HEAVY OUD ]",
     idealOud: "[ IDEAL FOR HEAVY OUD ]",
     // Discovery Modal
@@ -98,7 +98,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     authSignUp: "CREATE ACCOUNT",
     authTabSignIn: "SIGN IN",
     authTabSignUp: "SIGN UP",
-    authSubline: "SOTD STUDIO â€” IDENTITY CHECK",
+    authSubline: "SOTD STUDIO — IDENTITY CHECK",
     authUsernamePlaceholder: "USERNAME",
     authEmailPlaceholder: "EMAIL ADDRESS",
     authPasswordPlaceholder: "PASSWORD",
@@ -130,7 +130,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     invoiceWarning: '⚠ WARNING: THIS IS A ROUGH ESTIMATE. NOT A FINANCIAL DOCUMENT.',
     invoiceTrigger: '[ VIEW INVOICE ]',
     // Footer
-    footer: "Â© 2026 SOTD STUDIO â€” ALL RIGHTS RESERVED.",
+    footer: "© 2026 SOTD STUDIO — ALL RIGHTS RESERVED.",
   },
   id: {
     // Navigation
@@ -144,17 +144,17 @@ const UI_DICT: Record<string, Record<string, string>> = {
     logoutBtn: "KELUAR",
     hiUser: "HAI,",
     // Hero
-    heroIntro: "00 â€” PENGENALAN",
+    heroIntro: "00 — PENGENALAN",
     heroBody: "Kurasi koleksimu. Kontekstualisasikan harimu. Temukan kesimpulan penciuman sempurna berdasarkan lingkungan lokalmu.",
     heroCtaBtn: "BUKA BRANKAS",
     // Vault section
-    vaultLabel: "01 â€” BRANKAS PRIBADI",
+    vaultLabel: "01 — BRANKAS PRIBADI",
     vaultTitle: "Lemari Parfum.",
     vaultSubtitle: "PILIH ARSIPMU UNTUK MEMULAI ANALISIS.",
     vaultClearBtn: "[ KOSONGKAN BRANKAS ]",
     vaultFilterLabel: "FILTER BERDASARKAN KATEGORI",
     // Stylist Engine section
-    stylistLabel: "02 â€” MESIN STYLIST",
+    stylistLabel: "02 — MESIN STYLIST",
     stylistTitle: "BUAT SOTD KAMU",
     envSetup: "PENGATURAN LINGKUNGAN",
     weatherPending: "BELUM DIATUR",
@@ -180,7 +180,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     houseOf: "DARI RUMAH",
     topNotes: "TOP NOTES:",
     // Tracker / Journal section
-    trackerLabel: "03 â€” PELACAK HARIAN",
+    trackerLabel: "03 — PELACAK HARIAN",
     trackerTitle: "Jurnal SOTD.",
     trackerSubtitle: "Jejak olfaktori pribadimu.",
     monthlyCalendar: "KALENDER WANGI BULANAN",
@@ -192,7 +192,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     vaultValuation: "NILAI BRANKAS",
     noJournal: "Belum ada wangi yang dicatat.",
     noJournalSub: "GENERATE DAN LOG SOTD KAMU DI ATAS.",
-    ratePerformance: "ðŸ“Š NILAI PERFORMA",
+    ratePerformance: "📊 NILAI PERFORMA",
     warningAvoidOud: "[ PERINGATAN: HINDARI OUD BERAT ]",
     idealOud: "[ IDEAL UNTUK OUD BERAT ]",
     // Discovery Modal
@@ -218,7 +218,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     authSignUp: "BUAT AKUN",
     authTabSignIn: "MASUK",
     authTabSignUp: "DAFTAR",
-    authSubline: "SOTD STUDIO â€” VERIFIKASI IDENTITAS",
+    authSubline: "SOTD STUDIO — VERIFIKASI IDENTITAS",
     authUsernamePlaceholder: "USERNAME",
     authEmailPlaceholder: "ALAMAT EMAIL",
     authPasswordPlaceholder: "KATA SANDI",
@@ -250,7 +250,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     invoiceWarning: '⚠ WARNING: HARGA INI ADALAH ESTIMASI KASAR. BUKAN DOKUMEN FINANSIAL RESMI.',
     invoiceTrigger: '[ LIHAT INVOICE ]',
     // Footer
-    footer: "Â© 2026 SOTD STUDIO â€” SEMUA HAK DILINDUNGI.",
+    footer: "© 2026 SOTD STUDIO © SEMUA HAK DILINDUNGI.",
   },
 };
 
@@ -539,7 +539,7 @@ export default function BrutalistSOTDpamungkas() {
   useEffect(() => {
     // NOTE: User session (name + avatar) is restored via onAuthStateChange below,
     // which fires on every page load with the correct Google profile metadata.
-    // Do NOT restore 'sotd_user' from localStorage here â€” it may contain a stale
+    // Do NOT restore 'sotd_user' from localStorage here — it may contain a stale
     // raw provider ID (e.g. "GOOGLE_MPT9V0KV") written by an older version of the app.
 
     // Restore vault from localStorage
@@ -564,11 +564,19 @@ export default function BrutalistSOTDpamungkas() {
         console.error('Failed to restore journal from localStorage', e);
       }
     }
+    
+    const savedTheme = localStorage.getItem('sotd_theme');
+    if (savedTheme === 'dark') setIsDark(true);
   }, []);
 
   useEffect(() => {
-    if (isDark) document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('sotd_theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('sotd_theme', 'light');
+    }
   }, [isDark]);
 
 
@@ -850,7 +858,7 @@ export default function BrutalistSOTDpamungkas() {
 
   const removeFromCloset = (itemToRemove: any, e: React.MouseEvent) => {
     e.stopPropagation();
-    // Remove directly from state and persist to localStorage â€” no network call
+    // Remove directly from state and persist to localStorage — no network call
     setCloset((prev) => {
       const newCloset = [...prev];
       const idx = newCloset.findIndex(p => p !== null && (p.id === itemToRemove.id || p.name === itemToRemove.name));
@@ -861,7 +869,7 @@ export default function BrutalistSOTDpamungkas() {
   };
 
   const clearAllCloset = () => {
-    // Clear state and localStorage â€” no network call
+    // Clear state and localStorage — no network call
     setCloset(Array(12).fill(null));
     localStorage.removeItem('sotd_closet');
   };
@@ -988,7 +996,7 @@ export default function BrutalistSOTDpamungkas() {
       );
     }
 
-    // Step 4: Final fallback â€” use all available perfumes in closet seamlessly
+    // Step 4: Final fallback — use all available perfumes in closet seamlessly
     const matches = prioritized.length > 0 ? prioritized : availablePerfumes;
 
     const shuffled = [...matches].sort(() => 0.5 - Math.random());
@@ -1100,7 +1108,7 @@ export default function BrutalistSOTDpamungkas() {
     const filledCount = closet.filter(item => item !== null).length;
     const MIN_SLOTS = 12;
     if (user === null || filledCount <= 11) return Math.max(MIN_SLOTS, closet.length);
-    // Next multiple of 4 that exceeds filledCount â€” guarantees empty "+" slots
+    // Next multiple of 4 that exceeds filledCount — guarantees empty "+" slots
     return Math.ceil((filledCount + 1) / 4) * 4;
   }, [closet, user]);
 
@@ -1240,6 +1248,7 @@ export default function BrutalistSOTDpamungkas() {
   // ==========================================
   return (
     <div className={`min-h-screen font-sans transition-colors duration-500 scroll-smooth ${isDark ? 'bg-[#0a0a0a] text-[#fafafa] selection:bg-[#fafafa] selection:text-[#0a0a0a]' : 'bg-[#fafafa] text-[#111111] selection:bg-[#111111] selection:text-white'}`}>
+      <script dangerouslySetInnerHTML={{ __html: `(function(){const t=localStorage.getItem("sotd_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}else{document.documentElement.classList.remove("dark")}})();` }} />
 
       {/* NAVIGATION */}
       <nav className={`fixed top-0 w-full z-40 backdrop-blur-md border-b transition-colors duration-500 ${isDark ? 'bg-[#0a0a0a]/80 border-[#333333]' : 'bg-white/80 border-gray-200'}`}>
@@ -1248,7 +1257,7 @@ export default function BrutalistSOTDpamungkas() {
             <img
               src="/logo-sotd.png"
               alt="SOTD Studio"
-              className="h-18 w-18 object-contain hover:scale-105 transition-transform duration-200"
+              className={`h-18 w-18 object-contain hover:scale-105 transition-transform duration-200 ${isDark ? 'invert' : ''}`}
             />
           </a>
           <div className="flex items-center gap-8">
@@ -1431,7 +1440,7 @@ export default function BrutalistSOTDpamungkas() {
                   <div className="flex items-center gap-3">
                     <Sun size={32} strokeWidth={1.5} />
                     <span className="text-3xl font-light tracking-tight">
-                      {weather === 'Panas' ? 'Sunny' : weather === 'Dingin' ? 'Rainy' : d.weatherPending} {actualTemp !== null ? `/ ${actualTemp}Â°C` : ''}
+                      {weather === 'Panas' ? 'Sunny' : weather === 'Dingin' ? 'Rainy' : d.weatherPending} {actualTemp !== null ? `/ ${actualTemp}°C` : ''}
                     </span>
                   </div>
                   {actualTemp !== null && actualTemp > 30 && (
@@ -1620,7 +1629,7 @@ export default function BrutalistSOTDpamungkas() {
 
                     <div className="w-full text-center px-4">
                       <p className={`text-sm font-light leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-800'}`}>
-                        Based on this perfume&apos;s profile, use <strong>{actualSprays}x sprays (fresh scent, lower longevity)</strong> for maximum scent impact. Focus on major pulse points: <strong>neck, chest, and wrists</strong> (per the green indicators). An ideal choice for <strong>{weather === 'Panas' ? 'Panas' : 'Dingin'}</strong> weather in a <strong>{selectedActivity.toLowerCase()}</strong> environment inside a <strong>{selectedLocation}</strong> area.
+                        {t.guidePrefix}<strong>{actualSprays}x</strong>{t.guideMid}<strong>{t.guidePulse}</strong>{t.guideSuffix1}<strong>{weather === 'Panas' ? 'Panas' : 'Dingin'}</strong>{t.guideSuffix2}<strong>{selectedActivity.toLowerCase()}</strong>{t.guideSuffix3}<strong>{selectedLocation}</strong>{t.guideSuffix4}
                       </p>
                     </div>
                   </div>
@@ -1674,7 +1683,7 @@ export default function BrutalistSOTDpamungkas() {
                 {calendarData.cells.map((cell, idx) => (
                   <div
                     key={`cal-${idx}`}
-                    title={cell.dateStr && cell.log ? `${cell.dateStr} â€” ${cell.log.perfume?.name}` : cell.dateStr || ''}
+                    title={cell.dateStr && cell.log ? `${cell.dateStr} — ${cell.log.perfume?.name}` : cell.dateStr || ''}
                     className={`relative aspect-square overflow-hidden transition-colors duration-200 ${!cell.day
                       ? 'invisible'
                       : cell.log
@@ -1792,7 +1801,7 @@ export default function BrutalistSOTDpamungkas() {
 
                             {/* LONGEVITY COLUMN */}
                             <div>
-                              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-cyan-500 block mb-3">â± LONGEVITY</span>
+                              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-cyan-500 block mb-3">⏳ LONGEVITY</span>
                               <div className="space-y-1.5">
                                 {longevityOptions.map((opt) => {
                                   const isActive = (log.userLongevity ?? 'moderate') === opt.toLowerCase().replace(' ', '_').replace(' ', '_');
@@ -1808,7 +1817,7 @@ export default function BrutalistSOTDpamungkas() {
                                         }`}
                                     >
                                       <span className="text-[9px] font-black uppercase tracking-widest">{opt}</span>
-                                      {isActiveCurrent && <span className="text-[8px] font-black tracking-widest">âœ“ YOUR VOTE</span>}
+                                      {isActiveCurrent && <span className="text-[8px] font-black tracking-widest">✓ YOUR VOTE</span>}
                                     </button>
                                   );
                                 })}
@@ -1817,7 +1826,7 @@ export default function BrutalistSOTDpamungkas() {
 
                             {/* SILLAGE COLUMN */}
                             <div>
-                              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-green-500 block mb-3">ðŸŒ¬ SILLAGE</span>
+                              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-green-500 block mb-3">🌬️ SILLAGE</span>
                               <div className="space-y-1.5">
                                 {sillageOptions.map((opt) => {
                                   const optKey = opt.toLowerCase().replace(/ /g, '_');
@@ -1832,7 +1841,7 @@ export default function BrutalistSOTDpamungkas() {
                                         }`}
                                     >
                                       <span className="text-[9px] font-black uppercase tracking-widest">{opt}</span>
-                                      {isActiveCurrent && <span className="text-[8px] font-black tracking-widest">âœ“ YOUR VOTE</span>}
+                                      {isActiveCurrent && <span className="text-[8px] font-black tracking-widest">✓ YOUR VOTE</span>}
                                     </button>
                                   );
                                 })}
@@ -1872,7 +1881,7 @@ export default function BrutalistSOTDpamungkas() {
         {/* --- SCENT TRIVIA SECTION --- */}
         <section id="trivia" className={`relative w-full mt-16 py-32 grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-t-4 transition-colors duration-500 ${isDark ? 'border-[#333333] border-t-[#fafafa]' : 'border-gray-200 border-t-[#111111]'}`}>
           <div className="md:col-span-3">
-            <span className={`text-[10px] tracking-[0.4em] uppercase font-bold sticky top-32 ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>04 â€” SCENT TRIVIA</span>
+            <span className={`text-[10px] tracking-[0.4em] uppercase font-bold sticky top-32 ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>04 — SCENT TRIVIA</span>
           </div>
           <div className="md:col-span-9">
             <div className="mb-20">
@@ -2268,9 +2277,9 @@ export default function BrutalistSOTDpamungkas() {
             {/* --- SUCCESS FEEDBACK TOAST --- */}
             {addedToVault && (
               <div className="mb-6 shrink-0 px-4 py-3 bg-green-500 text-white flex items-center gap-3 border-2 border-green-700">
-                <span className="text-lg font-black">âœ“</span>
+                <span className="text-lg font-black">✓</span>
                 <div>
-                  <p className="text-[11px] font-black uppercase tracking-widest leading-tight">{addedToVault} â€” {d.addedToVaultMsg}</p>
+                  <p className="text-[11px] font-black uppercase tracking-widest leading-tight">{addedToVault} — {d.addedToVaultMsg}</p>
                   <p className="text-[9px] uppercase tracking-wider mt-0.5 opacity-80">{d.addedToVaultSub}</p>
                 </div>
               </div>
@@ -2469,7 +2478,7 @@ export default function BrutalistSOTDpamungkas() {
                 <p className={`text-3xl font-light tracking-tighter leading-none ${isDark ? 'text-[#fafafa]' : 'text-[#111111]'}`}>Rp {totalWardrobeValue.toLocaleString('id-ID')}</p>
               </div>
             </div>
-            
+
             <div className={`mt-6 p-4 border ${isDark ? 'bg-[#1a1a1a] border-[#333333]' : 'bg-gray-50 border-gray-200'}`}>
               <p className={`text-[9px] font-bold uppercase tracking-widest text-center ${isDark ? 'text-red-400' : 'text-red-600'}`}>
                 {d.invoiceWarning}
