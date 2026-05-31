@@ -6,10 +6,11 @@ export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
 
+  console.log('CALLBACK URL:', request.url);
+  console.log('CODE:', code);
+  console.log('ORIGIN:', requestUrl.origin);
+
   if (code) {
-    // In Next.js 15+/16, cookies() is async and must be awaited.
-    // It cannot be passed as a constructor reference like createRouteHandlerClient({ cookies })
-    // because that legacy pattern assumed synchronous cookie access (Next.js ≤14).
     const cookieStore = await cookies();
 
     const supabase = createServerClient(
@@ -32,6 +33,5 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  // Redirect back to the app root after exchanging the code
   return NextResponse.redirect(requestUrl.origin);
 }

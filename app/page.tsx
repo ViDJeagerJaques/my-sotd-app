@@ -628,9 +628,7 @@ export default function BrutalistSOTDpamungkas() {
       }
     });
 
-    if (error) {
-      console.error("Supabase Google Auth Error:", error);
-    }
+    if (error) console.error("Supabase Google Auth Error:", error);
   };
 
   const performLoginSync = (displayUser: string, emailKey: string) => {
