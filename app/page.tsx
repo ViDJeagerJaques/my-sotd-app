@@ -621,7 +621,7 @@ export default function BrutalistSOTDpamungkas() {
       options: {
         // Dynamically target the current origin so this works on both
         // localhost:3000 and the production URL without any code changes.
-        redirectTo: 'https://my-sotd-app-460699291343.asia-southeast2.run.app/auth/callback',
+        redirectTo: `${window.location.origin}/auth/callback`,
         scopes: 'openid email profile',
         queryParams: {
           prompt: 'select_account',

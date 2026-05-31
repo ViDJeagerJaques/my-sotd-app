@@ -30,7 +30,13 @@ export async function GET(request: NextRequest) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  // TITIK DARAH PENGHABISAN: 
-  // Langsung tendang ke web live lu! Nggak ada celah buat 8080.
-  return NextResponse.redirect('https://my-sotd-app-460699291343.asia-southeast2.run.app/');
+  // LOGIKA CERDAS ANTI-8080:
+  // Cek apakah ini lagi jalan di laptop lu (localhost:3000)
+  const isLocal = request.url.includes('localhost:3000');
+  
+  const targetUrl = isLocal 
+    ? 'http://localhost:3000/' 
+    : 'https://my-sotd-app-460699291343.asia-southeast2.run.app/';
+
+  return NextResponse.redirect(targetUrl);
 }
