@@ -29,6 +29,5 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  const origin = process.env.NEXT_PUBLIC_SITE_URL || 'https://my-sotd-app-460699291343.asia-southeast2.run.app';
-  return NextResponse.redirect(origin);
+  return NextResponse.redirect('https://my-sotd-app-460699291343.asia-southeast2.run.app');
 }
