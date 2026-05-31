@@ -6,10 +6,6 @@ export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
 
-  console.log('CALLBACK URL:', request.url);
-  console.log('CODE:', code);
-  console.log('ORIGIN:', requestUrl.origin);
-
   if (code) {
     const cookieStore = await cookies();
 
@@ -33,5 +29,6 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  return NextResponse.redirect(requestUrl.origin);
+  const origin = process.env.NEXT_PUBLIC_SITE_URL || 'https://my-sotd-app-460699291343.asia-southeast2.run.app';
+  return NextResponse.redirect(origin);
 }
