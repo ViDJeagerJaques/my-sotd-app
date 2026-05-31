@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { MapPin, Sun, Check, X, Snowflake, Home, TreePine, Dumbbell, Activity, Heart, Briefcase, Sunrise, Sunset, Moon } from 'lucide-react';
@@ -24,17 +24,17 @@ const UI_DICT: Record<string, Record<string, string>> = {
     logoutBtn: "LOGOUT",
     hiUser: "HI,",
     // Hero
-    heroIntro: "00 — INTRODUCTION",
+    heroIntro: "00 â€” INTRODUCTION",
     heroBody: "Curate your collection. Contextualize your day. Arrive at the perfect olfactory conclusion based on your local environment.",
     heroCtaBtn: "OPEN THE VAULT",
     // Vault section
-    vaultLabel: "01 — PRIVATE VAULT",
+    vaultLabel: "01 â€” PRIVATE VAULT",
     vaultTitle: "The Closet.",
     vaultSubtitle: "Select your archive to begin analysis.",
     vaultClearBtn: "[ CLEAR ALL VAULT ]",
     vaultFilterLabel: "FILTER BY CATEGORY",
     // Stylist Engine section
-    stylistLabel: "02 — STYLIST ENGINE",
+    stylistLabel: "02 â€” STYLIST ENGINE",
     stylistTitle: "GENERATE YOUR SOTD",
     envSetup: "ENVIRONMENT SETUP",
     locationLabel: "LAYER 1: LOCATION",
@@ -59,7 +59,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     houseOf: "HOUSE OF",
     topNotes: "TOP NOTES:",
     // Tracker / Journal section
-    trackerLabel: "03 — DAILY TRACKER",
+    trackerLabel: "03 â€” DAILY TRACKER",
     trackerTitle: "SOTD Journal.",
     trackerSubtitle: "Your personal olfactory footprint.",
     monthlyCalendar: "MONTHLY SCENT CALENDAR",
@@ -71,7 +71,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     vaultValuation: "VAULT VALUATION",
     noJournal: "No scent recorded yet.",
     noJournalSub: "GENERATE AND LOG YOUR SOTD ABOVE.",
-    ratePerformance: "📊 RATE PERFORMANCE",
+    ratePerformance: "ðŸ“Š RATE PERFORMANCE",
     warningAvoidOud: "[ WARNING: AVOID HEAVY OUD ]",
     idealOud: "[ IDEAL FOR HEAVY OUD ]",
     // Discovery Modal
@@ -97,13 +97,13 @@ const UI_DICT: Record<string, Record<string, string>> = {
     authSignUp: "CREATE ACCOUNT",
     authTabSignIn: "SIGN IN",
     authTabSignUp: "SIGN UP",
-    authSubline: "SOTD STUDIO — IDENTITY CHECK",
+    authSubline: "SOTD STUDIO â€” IDENTITY CHECK",
     authUsernamePlaceholder: "USERNAME",
     authEmailPlaceholder: "EMAIL ADDRESS",
     authPasswordPlaceholder: "PASSWORD",
     authConfirmPlaceholder: "CONFIRM PASSWORD",
-    authSignInBtn: "ENTER VAULT →",
-    authSignUpBtn: "CREATE ACCOUNT →",
+    authSignInBtn: "ENTER VAULT â†’",
+    authSignUpBtn: "CREATE ACCOUNT â†’",
     authGoogleBtn: "CONTINUE WITH GOOGLE",
     authOrDivider: "OR",
     authSwitchToSignUp: "NO ACCOUNT YET?",
@@ -122,7 +122,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     // Log Toast
     loggedSuccessfully: "SOTD LOGGED SUCCESSFULLY",
     // Footer
-    footer: "© 2026 SOTD STUDIO — ALL RIGHTS RESERVED.",
+    footer: "Â© 2026 SOTD STUDIO â€” ALL RIGHTS RESERVED.",
   },
   id: {
     // Navigation
@@ -136,17 +136,17 @@ const UI_DICT: Record<string, Record<string, string>> = {
     logoutBtn: "KELUAR",
     hiUser: "HAI,",
     // Hero
-    heroIntro: "00 — PENGENALAN",
+    heroIntro: "00 â€” PENGENALAN",
     heroBody: "Kurasi koleksimu. Kontekstualisasikan harimu. Temukan kesimpulan penciuman sempurna berdasarkan lingkungan lokalmu.",
     heroCtaBtn: "BUKA BRANKAS",
     // Vault section
-    vaultLabel: "01 — BRANKAS PRIBADI",
+    vaultLabel: "01 â€” BRANKAS PRIBADI",
     vaultTitle: "Lemari Parfum.",
     vaultSubtitle: "PILIH ARSIPMU UNTUK MEMULAI ANALISIS.",
     vaultClearBtn: "[ KOSONGKAN BRANKAS ]",
     vaultFilterLabel: "FILTER BERDASARKAN KATEGORI",
     // Stylist Engine section
-    stylistLabel: "02 — MESIN STYLIST",
+    stylistLabel: "02 â€” MESIN STYLIST",
     stylistTitle: "BUAT SOTD KAMU",
     envSetup: "PENGATURAN LINGKUNGAN",
     locationLabel: "LAPISAN 1: LOKASI",
@@ -171,7 +171,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     houseOf: "DARI RUMAH",
     topNotes: "TOP NOTES:",
     // Tracker / Journal section
-    trackerLabel: "03 — PELACAK HARIAN",
+    trackerLabel: "03 â€” PELACAK HARIAN",
     trackerTitle: "Jurnal SOTD.",
     trackerSubtitle: "Jejak olfaktori pribadimu.",
     monthlyCalendar: "KALENDER WANGI BULANAN",
@@ -183,7 +183,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     vaultValuation: "NILAI BRANKAS",
     noJournal: "Belum ada wangi yang dicatat.",
     noJournalSub: "GENERATE DAN LOG SOTD KAMU DI ATAS.",
-    ratePerformance: "📊 NILAI PERFORMA",
+    ratePerformance: "ðŸ“Š NILAI PERFORMA",
     warningAvoidOud: "[ PERINGATAN: HINDARI OUD BERAT ]",
     idealOud: "[ IDEAL UNTUK OUD BERAT ]",
     // Discovery Modal
@@ -209,13 +209,13 @@ const UI_DICT: Record<string, Record<string, string>> = {
     authSignUp: "BUAT AKUN",
     authTabSignIn: "MASUK",
     authTabSignUp: "DAFTAR",
-    authSubline: "SOTD STUDIO — VERIFIKASI IDENTITAS",
+    authSubline: "SOTD STUDIO â€” VERIFIKASI IDENTITAS",
     authUsernamePlaceholder: "USERNAME",
     authEmailPlaceholder: "ALAMAT EMAIL",
     authPasswordPlaceholder: "KATA SANDI",
     authConfirmPlaceholder: "KONFIRMASI KATA SANDI",
-    authSignInBtn: "MASUK KE BRANKAS →",
-    authSignUpBtn: "BUAT AKUN →",
+    authSignInBtn: "MASUK KE BRANKAS â†’",
+    authSignUpBtn: "BUAT AKUN â†’",
     authGoogleBtn: "LANJUTKAN DENGAN GOOGLE",
     authOrDivider: "ATAU",
     authSwitchToSignUp: "BELUM PUNYA AKUN?",
@@ -234,7 +234,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     // Log Toast
     loggedSuccessfully: "SOTD BERHASIL DICATAT",
     // Footer
-    footer: "© 2026 SOTD STUDIO — SEMUA HAK DILINDUNGI.",
+    footer: "Â© 2026 SOTD STUDIO â€” SEMUA HAK DILINDUNGI.",
   },
 };
 
@@ -518,11 +518,10 @@ export default function BrutalistSOTDpamungkas() {
   // --- EFFECTS ---
   // ==========================================
   useEffect(() => {
-    // Restore user session from localStorage
-    const loggedInUser = localStorage.getItem('sotd_user');
-    if (loggedInUser) {
-      setUser(loggedInUser);
-    }
+    // NOTE: User session (name + avatar) is restored via onAuthStateChange below,
+    // which fires on every page load with the correct Google profile metadata.
+    // Do NOT restore 'sotd_user' from localStorage here â€” it may contain a stale
+    // raw provider ID (e.g. "GOOGLE_MPT9V0KV") written by an older version of the app.
 
     // Restore vault from localStorage
     const savedCloset = localStorage.getItem('sotd_closet');
@@ -617,18 +616,22 @@ export default function BrutalistSOTDpamungkas() {
   };
 
   const handleGoogleAuth = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        // Ini wajib ada biar Supabase nggak bingung harus balikin user ke mana
-        redirectTo: `${window.location.origin}/`
-      }
-    });
-    
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+      scopes: 'openid email profile',
+      queryParams: {
+        prompt: 'select_account',
+        access_type: 'offline',
+      },
+    }
+  });
+
     if (error) {
       console.error("Supabase Google Auth Error:", error);
     }
-};
+  };
 
   const performLoginSync = (displayUser: string, emailKey: string) => {
     const localClosetRaw = localStorage.getItem("sotd_closet");
@@ -645,7 +648,7 @@ export default function BrutalistSOTDpamungkas() {
     // USE EMAIL AS THE UNIQUE KEY FOR BACKUPS
     const userBackupCloset = localStorage.getItem(`sotd_closet_${emailKey}`);
     const userBackupJournal = localStorage.getItem(`sotd_journal_${emailKey}`);
-    
+
     setCloset((prevCloset) => {
       let merged: any[] = [];
       if (userBackupCloset) {
@@ -661,7 +664,7 @@ export default function BrutalistSOTDpamungkas() {
       const slotCount = Math.max(12, Math.ceil((merged.length + 1) / 4) * 4);
       const newCloset = [...merged];
       while (newCloset.length < slotCount) newCloset.push(null);
-      
+
       localStorage.setItem("sotd_closet", JSON.stringify(newCloset));
       return newCloset;
     });
@@ -686,7 +689,7 @@ export default function BrutalistSOTDpamungkas() {
 
   const handleLogout = async () => {
     const currentUserEmail = localStorage.getItem("sotd_user_email");
-    
+
     if (currentUserEmail) {
       // BACKUP USING THE SAVED EMAIL KEY
       localStorage.setItem(`sotd_closet_${currentUserEmail}`, JSON.stringify(closet));
@@ -697,10 +700,10 @@ export default function BrutalistSOTDpamungkas() {
     setUserAvatar(null);
     localStorage.removeItem("sotd_user");
     localStorage.removeItem("sotd_user_email");
-    
+
     setCloset(Array(12).fill(null));
     setJournal([]);
-    
+
     localStorage.removeItem("sotd_closet");
     localStorage.removeItem("sotd_journal");
 
@@ -709,18 +712,37 @@ export default function BrutalistSOTDpamungkas() {
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('EVENT:', event)
+      console.log('METADATA:', session?.user?.user_metadata)
       if (session?.user) {
-        const name = session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || "User";
+        // Clear stale google_xxx provider IDs from localStorage
+        const storedUser = localStorage.getItem('sotd_user');
+      if (storedUser && storedUser.toLowerCase().startsWith('google_')) {
+          localStorage.removeItem('sotd_user');
+          localStorage.removeItem('sotd_user_email');
+        }
+        // Prefer full_name â†’ name â†’ email prefix
+        const name =
+          session.user.user_metadata?.full_name ||
+          session.user.user_metadata?.name ||
+          session.user.identities?.[0]?.identity_data?.full_name ||
+          session.user.identities?.[0]?.identity_data?.name ||
+          session.user.email?.split('@')[0] ||
+          "User";
         const emailKey = session.user.email?.trim().toLowerCase() || 'unknown';
         setUser(name);
         setUserAvatar(session.user.user_metadata?.avatar_url || null);
-        
+        // Always write the correct name back to localStorage so any stale
+        // raw provider ID (e.g. "GOOGLE_MPT9V0KV") gets overwritten immediately.
+        localStorage.setItem('sotd_user', name);
+
         if (event === 'SIGNED_IN') {
-           performLoginSync(name, emailKey);
+          performLoginSync(name, emailKey);
         }
       } else {
         setUser(null);
         setUserAvatar(null);
+        localStorage.removeItem('sotd_user');
       }
     });
 
@@ -809,7 +831,7 @@ export default function BrutalistSOTDpamungkas() {
 
   const removeFromCloset = (itemToRemove: any, e: React.MouseEvent) => {
     e.stopPropagation();
-    // Remove directly from state and persist to localStorage — no network call
+    // Remove directly from state and persist to localStorage â€” no network call
     setCloset((prev) => {
       const newCloset = [...prev];
       const idx = newCloset.findIndex(p => p !== null && (p.id === itemToRemove.id || p.name === itemToRemove.name));
@@ -820,7 +842,7 @@ export default function BrutalistSOTDpamungkas() {
   };
 
   const clearAllCloset = () => {
-    // Clear state and localStorage — no network call
+    // Clear state and localStorage â€” no network call
     setCloset(Array(12).fill(null));
     localStorage.removeItem('sotd_closet');
   };
@@ -926,7 +948,7 @@ export default function BrutalistSOTDpamungkas() {
       );
     }
 
-    // Step 4: Final fallback — use all available perfumes in closet seamlessly
+    // Step 4: Final fallback â€” use all available perfumes in closet seamlessly
     const matches = prioritized.length > 0 ? prioritized : availablePerfumes;
 
     const shuffled = [...matches].sort(() => 0.5 - Math.random());
@@ -1016,7 +1038,7 @@ export default function BrutalistSOTDpamungkas() {
     );
   }, [searchQuery]);
 
-  // --- GROUP filteredSearch BY BRAND (A → Z) ---
+  // --- GROUP filteredSearch BY BRAND (A â†’ Z) ---
   const groupedByBrand = useMemo(() => {
     const groups = filteredSearch.reduce<Record<string, PerfumeEntry[]>>(
       (acc, perfume) => {
@@ -1027,7 +1049,7 @@ export default function BrutalistSOTDpamungkas() {
       },
       {}
     );
-    // Sort brand names alphabetically A → Z
+    // Sort brand names alphabetically A â†’ Z
     return Object.entries(groups).sort(([a], [b]) =>
       a.localeCompare(b, undefined, { sensitivity: 'base' })
     );
@@ -1038,7 +1060,7 @@ export default function BrutalistSOTDpamungkas() {
     const filledCount = closet.filter(item => item !== null).length;
     const MIN_SLOTS = 12;
     if (user === null || filledCount <= 11) return Math.max(MIN_SLOTS, closet.length);
-    // Next multiple of 4 that exceeds filledCount — guarantees empty "+" slots
+    // Next multiple of 4 that exceeds filledCount â€” guarantees empty "+" slots
     return Math.ceil((filledCount + 1) / 4) * 4;
   }, [closet, user]);
 
@@ -1067,7 +1089,7 @@ export default function BrutalistSOTDpamungkas() {
     const lastDay = new Date(year, month + 1, 0);
     const totalDaysInMonth = lastDay.getDate();
 
-    // Monday-based week offset: Mon=0 … Sun=6
+    // Monday-based week offset: Mon=0 â€¦ Sun=6
     const startDow = (firstDay.getDay() + 6) % 7;
 
     // Build cell array: nulls for leading blanks, then day numbers
@@ -1209,8 +1231,27 @@ export default function BrutalistSOTDpamungkas() {
 
             {user ? (
               <div className={`flex items-center gap-4 border-l pl-4 ${isDark ? 'border-[#333333]' : 'border-gray-400'}`}>
-                {userAvatar && <img src={userAvatar} alt="Avatar" className="w-6 h-6 rounded-full border border-gray-500" />}
-                <span className={`text-[10px] tracking-widest uppercase font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>{d.hiUser} {user}</span>
+                {userAvatar ? (
+                  <img
+                    src={userAvatar}
+                    alt={user}
+                    title={user}
+                    referrerPolicy="no-referrer"
+                    className="w-8 h-8 rounded-full border-2 object-cover flex-shrink-0"
+                    style={{ borderColor: isDark ? '#555' : '#ccc' }}
+                  />
+                ) : (
+                  <div
+                    title={user}
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0"
+                    style={{ background: isDark ? '#333' : '#eee', color: isDark ? '#fafafa' : '#111' }}
+                  >
+                    {user.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <span className={`text-[10px] tracking-widest uppercase font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                  {d.hiUser} {user}
+                </span>
                 <button onClick={handleLogout} className="text-[10px] uppercase font-bold text-red-500 hover:line-through">{d.logoutBtn}</button>
               </div>
             ) : (
@@ -1350,7 +1391,7 @@ export default function BrutalistSOTDpamungkas() {
                   <div className="flex items-center gap-3">
                     <Sun size={32} strokeWidth={1.5} />
                     <span className="text-3xl font-light tracking-tight">
-                      {weather === 'Panas' ? 'Sunny' : weather === 'Dingin' ? 'Rainy' : '—'} {actualTemp !== null ? `/ ${actualTemp}°C` : ''}
+                      {weather === 'Panas' ? 'Sunny' : weather === 'Dingin' ? 'Rainy' : 'â€”'} {actualTemp !== null ? `/ ${actualTemp}Â°C` : ''}
                     </span>
                   </div>
                   {actualTemp !== null && actualTemp > 30 && (
@@ -1581,7 +1622,7 @@ export default function BrutalistSOTDpamungkas() {
                 <span className={`text-[10px] tracking-widest uppercase font-black ${isDark ? 'text-[#fafafa]' : 'text-[#111111]'}`}>{calendarData.monthLabel}</span>
               </div>
 
-              {/* Day-of-week header: Mon → Sun */}
+              {/* Day-of-week header: Mon â†’ Sun */}
               <div className="grid grid-cols-7 mb-1">
                 {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((d) => (
                   <div key={d} className={`text-center text-[8px] font-black tracking-widest uppercase py-1 ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>{d}</div>
@@ -1593,7 +1634,7 @@ export default function BrutalistSOTDpamungkas() {
                 {calendarData.cells.map((cell, idx) => (
                   <div
                     key={`cal-${idx}`}
-                    title={cell.dateStr && cell.log ? `${cell.dateStr} — ${cell.log.perfume?.name}` : cell.dateStr || ''}
+                    title={cell.dateStr && cell.log ? `${cell.dateStr} â€” ${cell.log.perfume?.name}` : cell.dateStr || ''}
                     className={`relative aspect-square overflow-hidden transition-colors duration-200 ${!cell.day
                       ? 'invisible'
                       : cell.log
@@ -1708,7 +1749,7 @@ export default function BrutalistSOTDpamungkas() {
 
                             {/* LONGEVITY COLUMN */}
                             <div>
-                              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-cyan-500 block mb-3">⏱ LONGEVITY</span>
+                              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-cyan-500 block mb-3">â± LONGEVITY</span>
                               <div className="space-y-1.5">
                                 {longevityOptions.map((opt) => {
                                   const isActive = (log.userLongevity ?? 'moderate') === opt.toLowerCase().replace(' ', '_').replace(' ', '_');
@@ -1724,7 +1765,7 @@ export default function BrutalistSOTDpamungkas() {
                                         }`}
                                     >
                                       <span className="text-[9px] font-black uppercase tracking-widest">{opt}</span>
-                                      {isActiveCurrent && <span className="text-[8px] font-black tracking-widest">✓ YOUR VOTE</span>}
+                                      {isActiveCurrent && <span className="text-[8px] font-black tracking-widest">âœ“ YOUR VOTE</span>}
                                     </button>
                                   );
                                 })}
@@ -1733,7 +1774,7 @@ export default function BrutalistSOTDpamungkas() {
 
                             {/* SILLAGE COLUMN */}
                             <div>
-                              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-green-500 block mb-3">🌬 SILLAGE</span>
+                              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-green-500 block mb-3">ðŸŒ¬ SILLAGE</span>
                               <div className="space-y-1.5">
                                 {sillageOptions.map((opt) => {
                                   const optKey = opt.toLowerCase().replace(/ /g, '_');
@@ -1748,7 +1789,7 @@ export default function BrutalistSOTDpamungkas() {
                                         }`}
                                     >
                                       <span className="text-[9px] font-black uppercase tracking-widest">{opt}</span>
-                                      {isActiveCurrent && <span className="text-[8px] font-black tracking-widest">✓ YOUR VOTE</span>}
+                                      {isActiveCurrent && <span className="text-[8px] font-black tracking-widest">âœ“ YOUR VOTE</span>}
                                     </button>
                                   );
                                 })}
@@ -1788,7 +1829,7 @@ export default function BrutalistSOTDpamungkas() {
         {/* --- SCENT TRIVIA SECTION --- */}
         <section id="trivia" className={`relative w-full mt-16 py-32 grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-t-4 transition-colors duration-500 ${isDark ? 'border-[#333333] border-t-[#fafafa]' : 'border-gray-200 border-t-[#111111]'}`}>
           <div className="md:col-span-3">
-            <span className={`text-[10px] tracking-[0.4em] uppercase font-bold sticky top-32 ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>04 — SCENT TRIVIA</span>
+            <span className={`text-[10px] tracking-[0.4em] uppercase font-bold sticky top-32 ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>04 â€” SCENT TRIVIA</span>
           </div>
           <div className="md:col-span-9">
             <div className="mb-20">
@@ -1818,7 +1859,7 @@ export default function BrutalistSOTDpamungkas() {
                   />
                 </div>
                 <p className={`mt-4 text-[9px] font-bold uppercase tracking-[0.25em] ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>
-                  {lang === 'en' ? '▶ PRESS PLAY TO BEGIN' : '▶ TEKAN PUTAR UNTUK MULAI'}
+                  {lang === 'en' ? 'â–¶ PRESS PLAY TO BEGIN' : 'â–¶ TEKAN PUTAR UNTUK MULAI'}
                 </p>
               </div>
             </div>
@@ -1850,7 +1891,7 @@ export default function BrutalistSOTDpamungkas() {
                     <p className={`text-[9px] mt-4 font-light ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>{t.nightNote}</p>
                   </div>
                 </div>
-                
+
                 {/* DAY/NIGHT WARNING (Brutalist Red Box) */}
                 <div className={`border-4 p-6 ${isDark ? 'border-red-900 bg-red-950/30' : 'border-red-600 bg-red-50'}`}>
                   <p className={`text-[11px] font-black uppercase tracking-widest mb-2 ${isDark ? 'text-red-500' : 'text-red-700'}`}>{t.warningDayNight}</p>
@@ -2184,9 +2225,9 @@ export default function BrutalistSOTDpamungkas() {
             {/* --- SUCCESS FEEDBACK TOAST --- */}
             {addedToVault && (
               <div className="mb-6 shrink-0 px-4 py-3 bg-green-500 text-white flex items-center gap-3 border-2 border-green-700">
-                <span className="text-lg font-black">✓</span>
+                <span className="text-lg font-black">âœ“</span>
                 <div>
-                  <p className="text-[11px] font-black uppercase tracking-widest leading-tight">{addedToVault} — {d.addedToVaultMsg}</p>
+                  <p className="text-[11px] font-black uppercase tracking-widest leading-tight">{addedToVault} â€” {d.addedToVaultMsg}</p>
                   <p className="text-[9px] uppercase tracking-wider mt-0.5 opacity-80">{d.addedToVaultSub}</p>
                 </div>
               </div>
@@ -2253,7 +2294,7 @@ export default function BrutalistSOTDpamungkas() {
                       ))
                     )}
                   </div>
-                  
+
                   {/* ALPHABETICAL INDEX SIDEBAR */}
                   <div className="absolute right-0 top-0 bottom-0 flex flex-col justify-center pr-2 pointer-events-none">
                     <div className="flex flex-col items-center pointer-events-auto">
@@ -2272,11 +2313,10 @@ export default function BrutalistSOTDpamungkas() {
                                 }
                               }
                             }}
-                            className={`text-[9px] font-black leading-tight w-5 py-[1px] text-center transition-transform duration-200 ${
-                              isActive
-                                ? `cursor-pointer hover:scale-150 ${isDark ? 'text-[#fafafa]' : 'text-[#111111]'}`
-                                : `cursor-not-allowed opacity-30 ${isDark ? 'text-gray-600' : 'text-gray-400'}`
-                            }`}
+                            className={`text-[9px] font-black leading-tight w-5 py-[1px] text-center transition-transform duration-200 ${isActive
+                              ? `cursor-pointer hover:scale-150 ${isDark ? 'text-[#fafafa]' : 'text-[#111111]'}`
+                              : `cursor-not-allowed opacity-30 ${isDark ? 'text-gray-600' : 'text-gray-400'}`
+                              }`}
                           >
                             {letter}
                           </div>
@@ -2345,7 +2385,7 @@ export default function BrutalistSOTDpamungkas() {
           style={{ maxWidth: '360px' }}
         >
           <div className="flex items-center gap-3">
-            <span className="text-2xl font-black">✕</span>
+            <span className="text-2xl font-black">âœ•</span>
             <div>
               <p className="text-[11px] font-black uppercase tracking-widest leading-tight">{d.dupeAlertTitle}</p>
               <p className="text-[9px] uppercase tracking-wider mt-1 opacity-80">{d.dupeAlertSub}</p>
@@ -2401,7 +2441,7 @@ export default function BrutalistSOTDpamungkas() {
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.25em]">{d.loggedSuccessfully}</p>
             <p className={`text-[8px] uppercase tracking-widest mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-300'}`}>
-              {actualSprays}x sprays{isLayered && layeringPerfumeId ? ` · layered with ${layeringPerfumeId}` : ''}
+              {actualSprays}x sprays{isLayered && layeringPerfumeId ? ` Â· layered with ${layeringPerfumeId}` : ''}
             </p>
           </div>
         </div>
@@ -2413,7 +2453,7 @@ export default function BrutalistSOTDpamungkas() {
       >
         <div className={`flex items-center gap-4 px-6 py-4 border-2 shadow-2xl ${isDark ? 'bg-[#0a0a0a] border-red-500 text-red-500' : 'bg-white border-red-600 text-red-600'
           }`}>
-          <span className="text-xl font-black">✕</span>
+          <span className="text-xl font-black">âœ•</span>
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.25em]">{d.vaultEmpty}</p>
           </div>
