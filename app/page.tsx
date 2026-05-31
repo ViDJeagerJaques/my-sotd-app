@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { MapPin, Sun, Check, X, Snowflake, Home, TreePine, Dumbbell, Activity, Heart, Briefcase, Sunrise, Sunset, Moon } from 'lucide-react';
@@ -619,7 +619,9 @@ export default function BrutalistSOTDpamungkas() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `https://my-sotd-app-460699291343.asia-southeast2.run.app`,
+        // Dynamically target the current origin so this works on both
+        // localhost:3000 and the production URL without any code changes.
+        redirectTo: `${window.location.origin}/auth/callback`,
         scopes: 'openid email profile',
         queryParams: {
           prompt: 'select_account',
