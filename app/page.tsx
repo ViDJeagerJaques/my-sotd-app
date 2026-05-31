@@ -619,11 +619,16 @@ export default function BrutalistSOTDpamungkas() {
   const handleGoogleAuth = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
+      options: {
+        // Ini wajib ada biar Supabase nggak bingung harus balikin user ke mana
+        redirectTo: `${window.location.origin}/`
+      }
     });
+    
     if (error) {
       console.error("Supabase Google Auth Error:", error);
     }
-  };
+};
 
   const performLoginSync = (displayUser: string, emailKey: string) => {
     const localClosetRaw = localStorage.getItem("sotd_closet");
