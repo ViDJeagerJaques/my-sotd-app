@@ -10,8 +10,11 @@ export async function GET(request: NextRequest) {
   const code = requestUrl.searchParams.get('code');
   console.log('[AUTH CALLBACK] code:', code ? 'ADA' : 'TIDAK ADA');
 
-  // Derive the origin dynamically so this works on both localhost and production
-  const origin = requestUrl.origin;
+  // 🔥 JURUS ANTI-8080: Paksa origin ke link production kalau lagi di Cloud Run!
+  let origin = requestUrl.origin;
+  if (process.env.NODE_ENV === 'production') {
+    origin = 'https://my-sotd-app-460699291343.asia-southeast2.run.app';
+  }
 
   if (code) {
     const cookieStore = await cookies();
