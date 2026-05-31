@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { MapPin, Sun, Check, X, Snowflake, Home, TreePine, Dumbbell, Activity, Heart, Briefcase, Sunrise, Sunset, Moon } from 'lucide-react';
@@ -37,6 +37,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     stylistLabel: "02 â€” STYLIST ENGINE",
     stylistTitle: "GENERATE YOUR SOTD",
     envSetup: "ENVIRONMENT SETUP",
+    weatherPending: "PENDING...",
     locationLabel: "LAYER 1: LOCATION",
     activityLabel: "LAYER 2: ACTIVITY",
     detectingLocation: "DETECTING...",
@@ -102,8 +103,8 @@ const UI_DICT: Record<string, Record<string, string>> = {
     authEmailPlaceholder: "EMAIL ADDRESS",
     authPasswordPlaceholder: "PASSWORD",
     authConfirmPlaceholder: "CONFIRM PASSWORD",
-    authSignInBtn: "ENTER VAULT â†’",
-    authSignUpBtn: "CREATE ACCOUNT â†’",
+    authSignInBtn: "SIGN IN \u2192",
+    authSignUpBtn: "CREATE ACCOUNT \u2192",
     authGoogleBtn: "CONTINUE WITH GOOGLE",
     authOrDivider: "OR",
     authSwitchToSignUp: "NO ACCOUNT YET?",
@@ -121,6 +122,13 @@ const UI_DICT: Record<string, Record<string, string>> = {
     dupeAlertSub: "This scent is already in your collection.",
     // Log Toast
     loggedSuccessfully: "SOTD LOGGED SUCCESSFULLY",
+    // Invoice
+    invoiceTitle: 'VAULT INVOICE',
+    invoiceSubtitle: 'ESTIMATED COLLECTION VALUE',
+    invoiceEmpty: 'Vault is empty.',
+    invoiceTotal: 'TOTAL ESTIMATE',
+    invoiceWarning: '⚠ WARNING: THIS IS A ROUGH ESTIMATE. NOT A FINANCIAL DOCUMENT.',
+    invoiceTrigger: '[ VIEW INVOICE ]',
     // Footer
     footer: "Â© 2026 SOTD STUDIO â€” ALL RIGHTS RESERVED.",
   },
@@ -149,6 +157,7 @@ const UI_DICT: Record<string, Record<string, string>> = {
     stylistLabel: "02 â€” MESIN STYLIST",
     stylistTitle: "BUAT SOTD KAMU",
     envSetup: "PENGATURAN LINGKUNGAN",
+    weatherPending: "BELUM DIATUR",
     locationLabel: "LAPISAN 1: LOKASI",
     activityLabel: "LAPISAN 2: AKTIVITAS",
     detectingLocation: "MENDETEKSI...",
@@ -214,8 +223,8 @@ const UI_DICT: Record<string, Record<string, string>> = {
     authEmailPlaceholder: "ALAMAT EMAIL",
     authPasswordPlaceholder: "KATA SANDI",
     authConfirmPlaceholder: "KONFIRMASI KATA SANDI",
-    authSignInBtn: "MASUK KE BRANKAS â†’",
-    authSignUpBtn: "BUAT AKUN â†’",
+    authSignInBtn: "MASUK \u2192",
+    authSignUpBtn: "BUAT AKUN \u2192",
     authGoogleBtn: "LANJUTKAN DENGAN GOOGLE",
     authOrDivider: "ATAU",
     authSwitchToSignUp: "BELUM PUNYA AKUN?",
@@ -233,6 +242,13 @@ const UI_DICT: Record<string, Record<string, string>> = {
     dupeAlertSub: "Wangi ini sudah ada di koleksimu.",
     // Log Toast
     loggedSuccessfully: "SOTD BERHASIL DICATAT",
+    // Invoice
+    invoiceTitle: 'INVOICE BRANKAS',
+    invoiceSubtitle: 'ESTIMASI NILAI KOLEKSI PARFUM',
+    invoiceEmpty: 'Vault Kosong.',
+    invoiceTotal: 'TOTAL ESTIMASI',
+    invoiceWarning: '⚠ WARNING: HARGA INI ADALAH ESTIMASI KASAR. BUKAN DOKUMEN FINANSIAL RESMI.',
+    invoiceTrigger: '[ LIHAT INVOICE ]',
     // Footer
     footer: "Â© 2026 SOTD STUDIO â€” SEMUA HAK DILINDUNGI.",
   },
@@ -382,6 +398,9 @@ export default function BrutalistSOTDpamungkas() {
   // --- LOG SUCCESS TOAST ---
   const [logSuccessToast, setLogSuccessToast] = useState(false);
   const [emptyVaultAlert, setEmptyVaultAlert] = useState(false);
+
+  // --- INVOICE MODAL ---
+  const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false);
 
   // --- CUSTOM SCENT FORM ---
   const [discoveryMode, setDiscoveryMode] = useState<'search' | 'custom'>('search');
@@ -845,6 +864,27 @@ export default function BrutalistSOTDpamungkas() {
     // Clear state and localStorage â€” no network call
     setCloset(Array(12).fill(null));
     localStorage.removeItem('sotd_closet');
+  };
+
+  const updatePerfumePrice = (perfumeId: number, newPrice: number) => {
+    setCloset((prevCloset) => {
+      const updated = prevCloset.map((item) => {
+        if (item && item.id === perfumeId) {
+          return { ...item, price: newPrice };
+        }
+        return item;
+      });
+      localStorage.setItem('sotd_closet', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const handlePriceBlur = (perfumeId: number, value: string) => {
+    let num = parseInt(value, 10);
+    if (isNaN(num)) num = 0;
+    if (num < 50000) num = 50000;
+    if (num > 100000000) num = 100000000;
+    updatePerfumePrice(perfumeId, num);
   };
 
   const resetCustomPerfumeForm = () => {
@@ -1391,7 +1431,7 @@ export default function BrutalistSOTDpamungkas() {
                   <div className="flex items-center gap-3">
                     <Sun size={32} strokeWidth={1.5} />
                     <span className="text-3xl font-light tracking-tight">
-                      {weather === 'Panas' ? 'Sunny' : weather === 'Dingin' ? 'Rainy' : 'â€”'} {actualTemp !== null ? `/ ${actualTemp}Â°C` : ''}
+                      {weather === 'Panas' ? 'Sunny' : weather === 'Dingin' ? 'Rainy' : d.weatherPending} {actualTemp !== null ? `/ ${actualTemp}Â°C` : ''}
                     </span>
                   </div>
                   {actualTemp !== null && actualTemp > 30 && (
@@ -1684,9 +1724,12 @@ export default function BrutalistSOTDpamungkas() {
                   <p className={`text-3xl md:text-4xl font-light tracking-tighter ${isDark ? 'text-[#fafafa]' : 'text-[#111111]'}`}>{trackerStats.streak}</p>
                   <p className={`text-[8px] md:text-[10px] uppercase font-bold tracking-widest mt-2 ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>{d.activeStreak}</p>
                 </div>
-                <div className={`border p-4 text-center transition-colors duration-500 ${isDark ? 'border-[#333333] bg-[#0a0a0a]' : 'border-gray-200 bg-gray-50'}`}>
+                <div className={`border p-4 flex flex-col items-center justify-center transition-colors duration-500 ${isDark ? 'border-[#333333] bg-[#0a0a0a]' : 'border-gray-200 bg-gray-50'}`}>
                   <p className={`text-lg md:text-2xl font-light tracking-tighter leading-tight ${isDark ? 'text-[#fafafa]' : 'text-[#111111]'}`}>Rp {totalWardrobeValue.toLocaleString('id-ID')}</p>
                   <p className={`text-[8px] md:text-[10px] uppercase font-bold tracking-widest mt-2 ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>{d.vaultValuation}</p>
+                  <button onClick={() => setIsInvoiceModalOpen(true)} className={`mt-3 text-[9px] uppercase font-black tracking-widest hover:line-through transition-all ${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black'}`}>
+                    {d.invoiceTrigger}
+                  </button>
                 </div>
               </div>
             </div>
@@ -2296,8 +2339,8 @@ export default function BrutalistSOTDpamungkas() {
                   </div>
 
                   {/* ALPHABETICAL INDEX SIDEBAR */}
-                  <div className="absolute right-0 top-0 bottom-0 flex flex-col justify-center pr-2 pointer-events-none">
-                    <div className="flex flex-col items-center pointer-events-auto">
+                  <div className="absolute right-0 top-2 bottom-2 flex flex-col justify-center pr-2 pointer-events-none overflow-hidden">
+                    <div className="flex flex-col h-full justify-between items-center pointer-events-auto">
                       {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => {
                         const isActive = groupedByBrand.some(([brand]) => brand[0].toUpperCase() === letter);
                         return (
@@ -2313,7 +2356,7 @@ export default function BrutalistSOTDpamungkas() {
                                 }
                               }
                             }}
-                            className={`text-[9px] font-black leading-tight w-5 py-[1px] text-center transition-transform duration-200 ${isActive
+                            className={`text-[8px] leading-none flex-1 flex items-center justify-center min-h-0 transition-all duration-200 font-black w-5 text-center ${isActive
                               ? `cursor-pointer hover:scale-150 ${isDark ? 'text-[#fafafa]' : 'text-[#111111]'}`
                               : `cursor-not-allowed opacity-30 ${isDark ? 'text-gray-600' : 'text-gray-400'}`
                               }`}
@@ -2373,6 +2416,65 @@ export default function BrutalistSOTDpamungkas() {
                 </button>
               </form>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* --- VAULT VALUATION INVOICE MODAL --- */}
+      {isInvoiceModalOpen && (
+        <div className="fixed inset-0 z-[105] flex items-center justify-center">
+          <div className={`absolute inset-0 backdrop-blur-sm transition-colors duration-500 ${isDark ? 'bg-[#0a0a0a]/90' : 'bg-white/90'}`} onClick={() => setIsInvoiceModalOpen(false)}></div>
+          <div className={`relative w-full max-w-2xl border p-12 shadow-2xl flex flex-col max-h-[90vh] transition-all duration-500 ${isDark ? 'bg-[#121212] border-[#333333]' : 'bg-white border-gray-200'}`}>
+            <header className="flex justify-between items-start mb-8 shrink-0">
+              <div>
+                <h3 className="text-4xl font-medium tracking-tighter uppercase transition-colors duration-500">{d.invoiceTitle}</h3>
+                <p className={`text-[10px] uppercase font-bold tracking-widest mt-2 ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>{d.invoiceSubtitle}</p>
+              </div>
+              <button onClick={() => setIsInvoiceModalOpen(false)} className="text-xs uppercase font-bold tracking-widest hover:line-through transition-colors duration-300">{d.closeBtn}</button>
+            </header>
+
+            <div className="space-y-4 overflow-y-auto pr-4 flex-1 custom-scrollbar">
+              {closet.filter((item) => item !== null).length === 0 ? (
+                <div className={`p-10 border text-center ${isDark ? 'border-[#333333] bg-[#0a0a0a]' : 'border-gray-200 bg-gray-50'}`}>
+                  <p className={`text-[10px] uppercase font-bold tracking-widest ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{d.invoiceEmpty}</p>
+                </div>
+              ) : (
+                closet.filter((item) => item !== null).map((p, index) => (
+                  <div key={`invoice-${p.id || p.name}-${index}`} className={`group py-4 border-b flex justify-between items-center transition-colors duration-300 ${isDark ? 'border-[#333333]' : 'border-gray-200'}`}>
+                    <div className="flex items-center gap-4">
+                      <img src={p.img} alt={p.name} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/monaco.png'; }} className={`w-8 h-12 object-cover border grayscale ${isDark ? 'border-[#333333]' : 'border-[#111111]'}`} />
+                      <div className="flex flex-col">
+                        <p className="text-sm font-bold leading-none tracking-widest uppercase transition-colors duration-300">{p.name}</p>
+                        <p className={`text-[9px] uppercase tracking-widest font-bold mt-1 transition-colors duration-500 ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>{p.brand}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-xs font-bold ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Rp</span>
+                      <input
+                        type="number"
+                        className={`w-32 bg-transparent text-right text-lg font-bold tracking-tighter focus:outline-none transition-colors border-b-2 border-transparent focus:border-current ${isDark ? 'text-[#fafafa]' : 'text-[#111111]'}`}
+                        defaultValue={p.price || 0}
+                        onBlur={(e) => handlePriceBlur(p.id, e.target.value)}
+                        style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
+                      />
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            <div className={`mt-8 pt-6 border-t-4 flex justify-between items-end ${isDark ? 'border-[#333333]' : 'border-[#111111]'}`}>
+              <div className="flex flex-col gap-2">
+                <p className={`text-[10px] uppercase font-black tracking-widest ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{d.invoiceTotal}</p>
+                <p className={`text-3xl font-light tracking-tighter leading-none ${isDark ? 'text-[#fafafa]' : 'text-[#111111]'}`}>Rp {totalWardrobeValue.toLocaleString('id-ID')}</p>
+              </div>
+            </div>
+            
+            <div className={`mt-6 p-4 border ${isDark ? 'bg-[#1a1a1a] border-[#333333]' : 'bg-gray-50 border-gray-200'}`}>
+              <p className={`text-[9px] font-bold uppercase tracking-widest text-center ${isDark ? 'text-red-400' : 'text-red-600'}`}>
+                {d.invoiceWarning}
+              </p>
+            </div>
           </div>
         </div>
       )}
