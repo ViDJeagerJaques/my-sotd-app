@@ -3,15 +3,16 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// WAJIB ADA DI NEXT.JS PRODUCTION AGAR ROUTE INI TIDAK DI-CACHE
 export const dynamic = 'force-dynamic'; 
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
 
-  // LOGIKA CERDAS ANTI-8080
-  const isLocal = request.url.includes('localhost');
+  // 🔥 FIX LOGIKA ANTI-8080: Cek host dari browser, bukan URL internal server Docker
+  const host = request.headers.get('host') || '';
+  const isLocal = host.includes('localhost:3000');
+  
   const targetUrl = isLocal 
     ? 'http://localhost:3000/' 
     : 'https://my-sotd-app-460699291343.asia-southeast2.run.app/';
@@ -36,12 +37,10 @@ export async function GET(request: NextRequest) {
       }
     );
 
-    // TANGKAP ERROR DARI SUPABASE ALIH-ALIH GAGAL DIAM-DIAM
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     
     if (error) {
       console.error("Supabase Auth Error:", error.message);
-      // Lempar error-nya ke URL Beranda biar kita bisa langsung baca!
       return NextResponse.redirect(`${targetUrl}?error=${encodeURIComponent(error.message)}`);
     }
   }
