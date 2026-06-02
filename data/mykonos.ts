@@ -49,7 +49,7 @@ export const mykonosPerfumes: PerfumeEntry[] = [
     img: 'https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.121104.avif',
     spl: 8,
     period: 'Day to evening',
-    weather: 'Panas',
+    weather: 'Versatile',
     topNotes: 'Mango, Italian Lemon, Rhubarb',
     middleNotes: 'Ginger, Jasmine, Praline, Pink Pepper, Violet',
     baseNotes: 'Amber, Cedar, Tonka, Moss',
