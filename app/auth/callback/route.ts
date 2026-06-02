@@ -3,13 +3,14 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+// 1. Matikan cache agresif Next.js di production
 export const dynamic = 'force-dynamic'; 
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
 
-  // 🔥 FIX LOGIKA ANTI-8080: Cek host dari browser, bukan URL internal server Docker
+  // 2. Logika Anti-Docker (Baca dari header, bukan dari internal server)
   const host = request.headers.get('host') || '';
   const isLocal = host.includes('localhost:3000');
   
@@ -20,6 +21,7 @@ export async function GET(request: NextRequest) {
   if (code) {
     const cookieStore = await cookies();
 
+    // 3. Pake sintaks asli bawaan lu yang terbukti sukses di-compile
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -41,6 +43,7 @@ export async function GET(request: NextRequest) {
     
     if (error) {
       console.error("Supabase Auth Error:", error.message);
+      // Tangkap error-nya dan lempar ke URL biar kebaca
       return NextResponse.redirect(`${targetUrl}?error=${encodeURIComponent(error.message)}`);
     }
   }
