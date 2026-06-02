@@ -738,7 +738,7 @@ export default function BrutalistSOTDpamungkas() {
   };
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event: any, session: any) => {
       console.log('EVENT:', event)
       console.log('METADATA:', session?.user?.user_metadata)
       if (session?.user) {
