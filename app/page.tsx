@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { MapPin, Sun, Check, X, Snowflake, Home, TreePine, Dumbbell, Activity, Heart, Briefcase, Sunrise, Sunset, Moon } from 'lucide-react';
-import { createBrowserClient } from '@supabase/ssr';
+import { supabase } from '../lib/supabase';
 
 // --- KABEL DATABASE ---
 import { allPerfumes } from "../data/perfumeDB";
@@ -329,8 +329,6 @@ function isDisposableDomain(email: string): boolean {
 }
 
 export default function BrutalistSOTDpamungkas() {
-  const supabase = createBrowserClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
-
   // ==========================================
   // --- STATES & REFS ---
   // ==========================================
